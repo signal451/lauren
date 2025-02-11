@@ -1,13 +1,14 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  darkMode: ['class'],
-  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+import type { Config } from 'tailwindcss'
+import defaultTheme from 'tailwindcss/defaultTheme'
+
+const config: Config = {
+  darkMode: ['selector'],
+  content: ['./src/**/*.{astro,md,mdx,ts,tsx}'],
   theme: {
     extend: {
-      borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)'
+      fontFamily: {
+        sans: ['JetBrains Mono', ...defaultTheme.fontFamily.sans],
+        mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
       },
       colors: {
         background: 'hsl(var(--background))',
@@ -38,16 +39,20 @@ module.exports = {
         },
         border: 'hsl(var(--border))',
         ring: 'hsl(var(--ring))',
-        chart: {
-          '1': 'hsl(var(--chart-1))',
-          '2': 'hsl(var(--chart-2))',
-          '3': 'hsl(var(--chart-3))',
-          '4': 'hsl(var(--chart-4))',
-          '5': 'hsl(var(--chart-5))'
-        }
-      }
-    }
+      },
+    },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('tailwindcss-animate'),
+    function ({
+      addVariant,
+    }: {
+      addVariant: (variant: string, selector: string) => void
+    }) {
+      addVariant('group-has-hover', ':merge(.group):has(.has-overlay:hover) &')
+    },
+  ],
 }
 
+export default config

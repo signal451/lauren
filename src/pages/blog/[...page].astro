@@ -1,0 +1,23 @@
+---
+import type { PaginateFunction } from "astro";
+import Layout from "@/layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { SITE } from "@/consts";
+import Container from "@/components/Container.astro";
+
+export async function getStaticPaths({
+  paginate,
+}: {
+  paginate: PaginateFunction;
+}) {
+  const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+  return paginate(
+    allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()),
+    { pageSize: SITE.POSTS_PER_PAGE },
+  );
+}
+---
+
+<Layout title="Blog" desription="Blog">
+  <Container class="flex grow flex-co gap-y-6" />
+</Layout>
