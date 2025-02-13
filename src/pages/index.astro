@@ -3,18 +3,36 @@ import Container from "@/components/Container.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
 import { getCollection } from "astro:content";
-import AuthorCard from "@/components/AuthorCard.astro"
-
+import AuthorCard from "@/components/AuthorCard.astro";
+import GithubCalendar from "@/components/bento/GithubCalendar";
 ---
 
 <Layout title="Home" desription={SITE.DESCRIPTION}>
   <Container class="flex flex-col gap-y-6">
-    <ul class="not-prose flex flex-col gap-y-6">
-      <AuthorCard/>
+    <div class="not-prose flex flex-col gap-y-6">
+      <AuthorCard />
       <div class="text-sm flex items-center gap-x-2">
-        <div class="w-2 h-2 bg-green-500 rounded-full animate-ping"/>
-       <span class=""> I'm available for work! <a class="underline decoration-muted-foreground  hover:decoration-foreground cursor-pointer" target="_blank" href="/resume.pdf"> Resume</a></span>
+        <div class="w-2 h-2 bg-green-500 rounded-full animate-ping"></div>
+        <span class="">
+          I'm available for work! <a
+            class="underline decoration-muted-foreground hover:decoration-foreground cursor-pointer"
+            target="_blank"
+            href="/resume.pdf"
+          >
+            Resume</a
+          ></span
+        >
       </div>
-    </ul>
+    </div>
+    <div
+    role="region"
+    aria-label="Github Section"
+    class="flex h-[270px] w-full flex-col items-start gap-4 overflow-hidden whitespace-nowrap rounded-lg border px-2 py-4 text-xs leading-loose text-white max-md:max-w-full max-md:pt-4 md:h-[300px]"
+  >
+    <div class="flex h-full w-full items-center justify-center ">
+      <GithubCalendar client:load username="decentparadox" />
+    </div>
+
+  </div>
   </Container>
 </Layout>
