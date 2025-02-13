@@ -54,8 +54,8 @@ export default defineConfig({
         rehypePrettyCode,
         {
           theme: {
-            light: 'github-light-high-contrast',
-            dark: 'github-dark-high-contrast',
+            light: 'everforest-dark',
+            dark: 'everforest-dark',
           },
           transformers: [
             transformerNotationDiff({
@@ -73,5 +73,9 @@ export default defineConfig({
     ],
     remarkPlugins: [remarkToc, remarkMath, remarkEmoji],
   },
+
+  devToolbar: {
+    enabled: false,
+  }
 
 });

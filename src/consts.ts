@@ -1,5 +1,3 @@
-import { Label } from "@radix-ui/react-dropdown-menu"
-
 export type Site = {
   TITLE: string,
   DESCRIPTION: string,
@@ -25,7 +23,8 @@ export const SITE: Site = {
 
 export const NAV_LINKS: Link[] = [
   { href: '/', label: 'Home'},
-  { href: '/blog', label: 'blog'}
+  { href: '/blog', label: 'Blog'},
+  // { href: '/resume.pdf', label: 'Resume'}
 ]
   
 export const SOCIAL_LINKS: Link[] = [

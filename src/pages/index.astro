@@ -1,8 +1,20 @@
 ---
+import Container from "@/components/Container.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import AuthorCard from "@/components/AuthorCard.astro"
+
 ---
 
 <Layout title="Home" desription={SITE.DESCRIPTION}>
-  <section class=""></section>
+  <Container class="flex flex-col gap-y-6">
+    <ul class="not-prose flex flex-col gap-y-6">
+      <AuthorCard/>
+      <div class="text-sm flex items-center gap-x-2">
+        <div class="w-2 h-2 bg-green-500 rounded-full animate-ping"/>
+       <span class=""> I'm available for work! <a class="underline decoration-muted-foreground  hover:decoration-foreground cursor-pointer" target="_blank" href="/resume.pdf"> Resume</a></span>
+      </div>
+    </ul>
+  </Container>
 </Layout>
